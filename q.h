@@ -1,3 +1,9 @@
+// Name: Cory Siebler & Marcus Finney
+// Class: CSE430 #12109
+// Assignment: Project 1
+// Description: Stores routines to initialize, add, rotate, and delete queues.
+//		Also has function to create a new element in the queue and to free deleted elements.
+
 #ifndef Q_H
 #define Q_H
 
