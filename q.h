@@ -17,42 +17,45 @@ typedef struct queue {
 //----------------------------//
 // Method Forward Declaration //
 //----------------------------//
-void initQueue(&head);	// creates an empty queue, pointed to by the variable head
-void addQueue(&head, queue);	// adds a queue item, pointed to by "item", to the queue pointed to by head
-void rotateQ(&head);	// Moves the header pointer to the next element in the queue
-queue delQueue(&head);	// deletes an item from head and returns a pointer to the delete item
-queue newItem();	// returns a pointer to a new q-element
+void initQueue(queue);	// creates an empty queue, pointed to by the variable head
+void addQueue(queue, q_elem);	// adds a queue item, pointed to by "item", to the queue pointed to by head
+void rotateQ(queue);	// Moves the header pointer to the next element in the queue
+q_elem delQueue(queue);	// deletes an item from head and returns a pointer to the deleted item
+q_elem newItem();	// returns a pointer to a new q-element
 
 //-------------------//
 // Routine Functions //
 //-------------------//
-void initQueue(q_elem &head) {
-	struct queue *que;
-
-	que = malloc(sizeof(struct queue));
-	
-	if (!que) {
-		return NULL;
-	}
+void initQueue(queue &head) {
+	// Allocate space for new Queue
+	head = malloc(sizeof(struct queue));
 	
 	return;
 }
 
-void addQueue(&head, queue item) {
+void addQueue(queue &head, q_elem item) {
+	// Doubly Linked List so grab last node
+	q_elem last = head.head.prev;
+	last.next = item; // Make link from last element
+	head.prev = item; // Make link to end from head
+	
 	return;
 }
 
-void rotateQ(&head) {
+void rotateQ(queue &head) {
+	// Move Head Pointer to Next Element
+	head = head.head.next;
+	
 	return;
 }
 
 queue delQueue(&head) {
-	queue item;
+	q_elem item;
 	return item;
 }
 
 queue newItem() {
-	queue item;
+	q_elem item = malloc(sizeof(struct q_elem));
 	return item;
 }
 
