@@ -17,5 +17,8 @@
 *.out
 *.app
 
-# Swap Files
+# Swap & Temp Files
 *.swp
+*.c~
+*.h~
+*.txt~
