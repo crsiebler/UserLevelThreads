@@ -102,8 +102,8 @@ void printQueue(struct queue &head) {
 
 	// Loop through elements until last element found
 	while (item != NULL && item.payload != first.payload) {
-		printf("PAYLOAD: %d\n", item);
-		item = item.next;
+		printf("PAYLOAD: %d\n", item); // Print the element's payload
+		item = item.next; // Iterate to next element in Queue
 	}
 
 	printf("\n");
