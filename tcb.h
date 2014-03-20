@@ -1,3 +1,5 @@
+#ifndef TCB_H
+#define TCB_H
 
 #include <ucontext.h>
 
@@ -18,4 +20,4 @@ void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)
     makecontext(&tcb->context, function, 0);// context is now cooked
 }
 
-
+#endif

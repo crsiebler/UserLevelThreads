@@ -12,15 +12,15 @@
 //----------------------------//
 // Data Structure Declaration //
 //----------------------------//
-struct q_elem {
+typedef struct q_elem {
 	struct q_elem *prev;
 	struct q_elem *next;
 	int payload;
-};
+} q_elem;
 
-struct queue {
+typedef struct queue {
 	struct q_elem *header;
-};
+} queue;
 
 //----------------------------//
 // Method Forward Declaration //
@@ -28,21 +28,21 @@ struct queue {
 void initQueue(struct queue);	// creates an empty queue, pointed to by the variable head
 void addQueue(struct queue, struct q_elem);	// adds a queue item, pointed to by "item", to the queue pointed to by head
 void rotateQ(struct queue);	// Moves the header pointer to the next element in the queue
-struct q_elem delQueue(struct queue);	// deletes an item from head and returns a pointer to the deleted item
-struct q_elem newItem();	// returns a pointer to a new q-element
+struct q_elem* delQueue(struct queue);	// deletes an item from head and returns a pointer to the deleted item
+struct q_elem* newItem();	// returns a pointer to a new q-element
 
 //-------------------//
 // Routine Functions //
 //-------------------//
-void initQueue(struct queue head) {
+void initQueue(struct queue &head) {
 	// Allocate space for new Queue
-	head = (struct queue) malloc(sizeof(struct queue));
+	head = (struct queue*) malloc(sizeof(struct queue));
 	head.header = NULL;
 	
 	return;
 }
 
-void addQueue(struct queue head, struct q_elem item) {
+void addQueue(struct queue &head, struct q_elem item) {
 	item.prev = head.header.prev; // Add new link at end of chain
 	item.next = head.header; // Attach new link to beginning of chain
 	head.header.prev.next = item; // Make link from last element
@@ -51,17 +51,17 @@ void addQueue(struct queue head, struct q_elem item) {
 	return;
 }
 
-void rotateQ(struct queue head) {
+void rotateQ(struct queue &head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
-	addQueue(head, delQueue(head));
+	addQueue(&head, delQueue(&head));
 	
 	return;
 }
 
-struct q_elem delQueue(struct queue head) {
+struct q_elem* delQueue(struct queue &head) {
 	// Grab the first element in the Queue
-	struct q_elem item = head.header;
+	struct q_elem *item = head.header;
 
 	// Grab the last element and next element
 	// Assign next and prev to recreate chain
@@ -74,12 +74,12 @@ struct q_elem delQueue(struct queue head) {
 	return item;
 }
 
-struct q_elem newItem() {
-	struct q_elem item = (struct q_elem) malloc(sizeof(struct q_elem));
+struct q_elem* newItem() {
+	struct q_elem *item = (struct q_elem*) malloc(sizeof(struct q_elem));
 	return item;
 }
 
-void printQueue(struct queue head) {
+void printQueue(struct queue &head) {
 	struct q_elem item = head.header;
 	struct q_elem last = head.header.prev;
 
