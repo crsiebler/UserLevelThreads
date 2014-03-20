@@ -43,10 +43,18 @@ void initQueue(struct queue &head) {
 }
 
 void addQueue(struct queue &head, struct q_elem item) {
-	item.prev = head.header.prev; // Add new link at end of chain
-	item.next = head.header; // Attach new link to beginning of chain
-	head.header.prev.next = item; // Make link from last element
-	head.header.prev = item; // Make link to end from head
+	if (head.header != NULL) {
+		// Queue is not empty, break chain and insert new item to end
+		item.prev = head.header.prev; // Add new link at end of chain
+		item.next = head.header; // Attach new link to beginning of chain
+		head.header.prev.next = item; // Make link from last element
+		head.header.prev = item; // Make link to end from head
+	} else {
+		// Queue is empty, make header point to new item
+		head.header = item;
+		item.prev = item;
+		item.next = item;
+	}
 	
 	return;
 }
@@ -75,15 +83,25 @@ struct q_elem* delQueue(struct queue &head) {
 }
 
 struct q_elem* newItem() {
+	// Allocate memory for new Queue element
 	struct q_elem *item = (struct q_elem*) malloc(sizeof(struct q_elem));
+	
+	// Verify memory is allocated
+	if (!item) {
+		item->prev = NULL; // Initialize Previous Element
+		item->next = NULL; // Initialize Next Element
+		item->payload = 0; // Initialize Payload
+	}
+
 	return item;
 }
 
 void printQueue(struct queue &head) {
-	struct q_elem item = head.header;
-	struct q_elem last = head.header.prev;
+	struct q_elem item = head.header; // Grab first item in chain to iterate
+	struct q_elem first = head.header.prev; // Grab first item in chain
 
-	while (item != NULL && item.payload != last.payload) {
+	// Loop through elements until last element found
+	while (item != NULL && item.payload != first.payload) {
 		printf("PAYLOAD: %d\n", item);
 		item = item.next;
 	}
