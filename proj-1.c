@@ -10,6 +10,21 @@
 // t1 Method //
 //-----------//
 void t1() {
+	// Create 10 Queue Elements
+	// Print Queue
+	int i;
+
+	struct queue head;
+	initQueue(&head);
+
+	for (i = 0; i < 10; i++) {
+		struct q_elem item = newItem();
+		item.payload = i;
+		addQueue(&head, item);
+	}
+
+	printQueue(&head);
+
 	return;
 }
 
@@ -24,5 +39,6 @@ void t2() {
 // main Method //
 //-------------//
 void main() {
+	t1();
 	return;
 }
