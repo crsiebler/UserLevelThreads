@@ -14,13 +14,13 @@
 // Data Structure Declaration //
 //----------------------------//
 typedef struct q_elem {
-	struct q_elem *prev;
-	struct q_elem *next;
-	int payload;
+	struct q_elem *prev; // Pointer to Previous Element
+	struct q_elem *next; // Pointer to Next Element
+	int payload; // Integer to store data for Element
 } q_elem;
 
 typedef struct queue {
-	struct q_elem *header;
+	struct q_elem *header; // Pointer to 1st Element in Queue
 } queue;
 
 //----------------------------//
@@ -52,8 +52,8 @@ void addQueue(struct queue *head, struct q_elem *item) {
 	} else {
 		// Queue is empty, make header point to new item
 		head->header = item;
-		item->prev = item;
-		item->next = item;
+		item->prev = item; // Make pointer to itself
+		item->next = item; // Make pointer to itself
 	}
 	
 	return;
@@ -106,7 +106,9 @@ void printQueue(struct queue *head) {
 		item = item->next; // Iterate to next element in Queue
 	}
 
+	// Check to make sure item is not NULL (i.e. improper Queue implementation)
 	if (item != NULL) {
+		// Print the last element in the Queue
 		printf("PAYLOAD: %d\n", item->payload);
 	}
 
