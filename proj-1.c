@@ -25,6 +25,12 @@ void t1() {
 
 	printQueue(head);
 
+	rotQueue(head);
+
+	printQueue(head);
+
+
+
 	return;
 }
 
@@ -32,7 +38,8 @@ void t1() {
 // t2 Method //
 //-----------//
 void t2() {
-	return;
+
+
 }
 
 //-------------//

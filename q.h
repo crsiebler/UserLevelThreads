@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //----------------------------//
 // Data Structure Declaration //
@@ -59,7 +60,7 @@ void addQueue(struct queue *head, struct q_elem *item) {
 	return;
 }
 
-void rotateQ(struct queue *head) {
+void rotQueue(struct queue *head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
 	addQueue(head, delQueue(head));
@@ -101,9 +102,10 @@ void printQueue(struct queue *head) {
 	struct q_elem *last = head->header->prev; // Grab last item in chain
 
 	// Loop through elements until last element found
-	while (item != NULL && item->payload != last->payload) {
+	while (item != NULL && (item->payload != last->payload)) {
 		printf("PAYLOAD: %d\n", item->payload); // Print the element's payload
 		item = item->next; // Iterate to next element in Queue
+		sleep(1);
 	}
 
 	// Check to make sure item is not NULL (i.e. improper Queue implementation)
