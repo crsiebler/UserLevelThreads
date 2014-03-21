@@ -18,8 +18,8 @@ void t1() {
 	initQueue(&head);
 
 	for (i = 0; i < 10; i++) {
-		struct q_elem item = newItem();
-		item.payload = i;
+		struct q_elem *item = newItem();
+		item->payload = i;
 		addQueue(&head, item);
 	}
 

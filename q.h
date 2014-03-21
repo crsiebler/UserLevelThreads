@@ -8,6 +8,7 @@
 #define Q_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 //----------------------------//
 // Data Structure Declaration //
@@ -25,41 +26,41 @@ typedef struct queue {
 //----------------------------//
 // Method Forward Declaration //
 //----------------------------//
-void initQueue(struct queue);	// creates an empty queue, pointed to by the variable head
-void addQueue(struct queue, struct q_elem);	// adds a queue item, pointed to by "item", to the queue pointed to by head
-void rotateQ(struct queue);	// Moves the header pointer to the next element in the queue
-struct q_elem* delQueue(struct queue);	// deletes an item from head and returns a pointer to the deleted item
+void initQueue(struct queue*);	// creates an empty queue, pointed to by the variable head
+void addQueue(struct queue*, struct q_elem);	// adds a queue item, pointed to by "item", to the queue pointed to by head
+void rotateQ(struct queue*);	// Moves the header pointer to the next element in the queue
+struct q_elem* delQueue(struct queue*);	// deletes an item from head and returns a pointer to the deleted item
 struct q_elem* newItem();	// returns a pointer to a new q-element
 
 //-------------------//
 // Routine Functions //
 //-------------------//
-void initQueue(struct queue &head) {
+void initQueue(struct queue *head) {
 	// Allocate space for new Queue
 	head = (struct queue*) malloc(sizeof(struct queue));
-	head.header = NULL;
+	head->header = NULL;
 	
 	return;
 }
 
-void addQueue(struct queue &head, struct q_elem item) {
-	if (head.header != NULL) {
+void addQueue(struct queue *head, struct q_elem item) {
+	if (head->header != NULL) {
 		// Queue is not empty, break chain and insert new item to end
-		item.prev = head.header.prev; // Add new link at end of chain
-		item.next = head.header; // Attach new link to beginning of chain
-		head.header.prev.next = item; // Make link from last element
-		head.header.prev = item; // Make link to end from head
+		item.prev = head->header->prev; // Add new link at end of chain
+		item.next = head->header; // Attach new link to beginning of chain
+		head->header->prev->next = &item; // Make link from last element
+		head->header->prev = &item; // Make link to end from head
 	} else {
 		// Queue is empty, make header point to new item
-		head.header = item;
-		item.prev = item;
-		item.next = item;
+		head->header = &item;
+		item.prev = &item;
+		item.next = &item;
 	}
 	
 	return;
 }
 
-void rotateQ(struct queue &head) {
+void rotateQ(struct queue *head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
 	addQueue(&head, delQueue(&head));
@@ -67,17 +68,17 @@ void rotateQ(struct queue &head) {
 	return;
 }
 
-struct q_elem* delQueue(struct queue &head) {
+struct q_elem* delQueue(struct queue *head) {
 	// Grab the first element in the Queue
-	struct q_elem *item = head.header;
+	struct q_elem *item = head->header;
 
 	// Grab the last element and next element
 	// Assign next and prev to recreate chain
-	head.header.prev.next = head.header.next;
-	head.header.next.prev = head.header.prev;
+	head->header->prev->next = head->header->next;
+	head->header->next->prev = head->header->prev;
 
 	// Set the Queue header to next
-	head.header = head.header.next;
+	head->header = head->header->next;
 	
 	return item;
 }
@@ -96,14 +97,18 @@ struct q_elem* newItem() {
 	return item;
 }
 
-void printQueue(struct queue &head) {
-	struct q_elem item = head.header; // Grab first item in chain to iterate
-	struct q_elem first = head.header.prev; // Grab first item in chain
+void printQueue(struct queue *head) {
+	struct q_elem *item = head->header; // Grab first item in chain to iterate
+	struct q_elem *last = head->header->prev; // Grab last item in chain
 
 	// Loop through elements until last element found
-	while (item != NULL && item.payload != first.payload) {
-		printf("PAYLOAD: %d\n", item); // Print the element's payload
-		item = item.next; // Iterate to next element in Queue
+	while (item != NULL && item->payload != last->payload) {
+		printf("PAYLOAD: %d\n", item->payload); // Print the element's payload
+		item = item->next; // Iterate to next element in Queue
+	}
+
+	if (item != NULL) {
+		printf("PAYLOAD: %d\n", item->payload);
 	}
 
 	printf("\n");
