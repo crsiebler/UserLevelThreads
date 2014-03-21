@@ -27,7 +27,7 @@ typedef struct queue {
 // Method Forward Declaration //
 //----------------------------//
 void initQueue(struct queue*);	// creates an empty queue, pointed to by the variable head
-void addQueue(struct queue*, struct q_elem);	// adds a queue item, pointed to by "item", to the queue pointed to by head
+void addQueue(struct queue*, struct q_elem*);	// adds a queue item, pointed to by "item", to the queue pointed to by head
 void rotateQ(struct queue*);	// Moves the header pointer to the next element in the queue
 struct q_elem* delQueue(struct queue*);	// deletes an item from head and returns a pointer to the deleted item
 struct q_elem* newItem();	// returns a pointer to a new q-element
@@ -43,18 +43,18 @@ void initQueue(struct queue *head) {
 	return;
 }
 
-void addQueue(struct queue *head, struct q_elem item) {
+void addQueue(struct queue *head, struct q_elem *item) {
 	if (head->header != NULL) {
 		// Queue is not empty, break chain and insert new item to end
-		item.prev = head->header->prev; // Add new link at end of chain
-		item.next = head->header; // Attach new link to beginning of chain
-		head->header->prev->next = &item; // Make link from last element
-		head->header->prev = &item; // Make link to end from head
+		item->prev = head->header->prev; // Add new link at end of chain
+		item->next = head->header; // Attach new link to beginning of chain
+		head->header->prev->next = item; // Make link from last element
+		head->header->prev = item; // Make link to end from head
 	} else {
 		// Queue is empty, make header point to new item
-		head->header = &item;
-		item.prev = &item;
-		item.next = &item;
+		head->header = item;
+		item->prev = item;
+		item->next = item;
 	}
 	
 	return;

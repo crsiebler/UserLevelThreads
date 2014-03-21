@@ -20,7 +20,7 @@ void t1() {
 	for (i = 0; i < 10; i++) {
 		struct q_elem *item = newItem();
 		item->payload = i;
-		addQueue(&head, item);
+		addQueue(&head, &item);
 	}
 
 	printQueue(&head);
