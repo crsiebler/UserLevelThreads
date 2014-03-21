@@ -40,6 +40,10 @@ void printQueue(struct queue*); // prints the queue's elements
 //-------------------//
 // Routine Functions //
 //-------------------//
+
+//------------------//
+// initQueue Method //
+//------------------//
 void initQueue(struct queue *head) {
 	// Allocate space for new Queue
 	head->header = NULL;
@@ -47,6 +51,9 @@ void initQueue(struct queue *head) {
 	return;
 }
 
+//-----------------//
+// addQueue Method //
+//-----------------//
 void addQueue(struct queue *head, struct q_elem *item) {
 	if (head->header != NULL) {
 		// Queue is not empty, break chain and insert new item to end
@@ -64,6 +71,9 @@ void addQueue(struct queue *head, struct q_elem *item) {
 	return;
 }
 
+//-----------------//
+// rotQueue Method //
+//-----------------//
 void rotQueue(struct queue *head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
@@ -72,6 +82,9 @@ void rotQueue(struct queue *head) {
 	return;
 }
 
+//-----------------//
+// delQueue Method //
+//-----------------//
 struct q_elem* delQueue(struct queue *head) {
 	// Grab the first element in the Queue
 	struct q_elem *item = head->header;
@@ -87,6 +100,9 @@ struct q_elem* delQueue(struct queue *head) {
 	return item;
 }
 
+//----------------//
+// newItem Method //
+//----------------//
 struct q_elem* newItem() {
 	// Allocate memory for new Queue element
 	struct q_elem *item = (struct q_elem*) malloc(sizeof(struct q_elem));
@@ -101,6 +117,9 @@ struct q_elem* newItem() {
 	return item;
 }
 
+//-------------------//
+// printQueue Method //
+//-------------------//
 void printQueue(struct queue *head) {
 	struct q_elem *item = head->header; // Grab first item in chain to iterate
 	struct q_elem *last = head->header->prev; // Grab last item in chain
