@@ -14,16 +14,16 @@ void t1() {
 	// Print Queue
 	int i;
 
-	struct queue head;
-	initQueue(&head);
+	struct queue *head = (struct queue*) malloc(sizeof(struct queue));
+	initQueue(head);
 
 	for (i = 0; i < 10; i++) {
 		struct q_elem *item = newItem();
 		item->payload = i;
-		addQueue(&head, &item);
+		addQueue(head, item);
 	}
 
-	printQueue(&head);
+	printQueue(head);
 
 	return;
 }

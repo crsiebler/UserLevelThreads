@@ -37,7 +37,6 @@ struct q_elem* newItem();	// returns a pointer to a new q-element
 //-------------------//
 void initQueue(struct queue *head) {
 	// Allocate space for new Queue
-	head = (struct queue*) malloc(sizeof(struct queue));
 	head->header = NULL;
 	
 	return;
@@ -63,7 +62,7 @@ void addQueue(struct queue *head, struct q_elem *item) {
 void rotateQ(struct queue *head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
-	addQueue(&head, delQueue(&head));
+	addQueue(head, delQueue(head));
 	
 	return;
 }
