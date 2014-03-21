@@ -7,6 +7,9 @@
 #ifndef Q_H
 #define Q_H
 
+//---------------//
+// Include Files //
+//---------------//
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -27,11 +30,12 @@ typedef struct queue {
 //----------------------------//
 // Method Forward Declaration //
 //----------------------------//
-void initQueue(struct queue*);	// creates an empty queue, pointed to by the variable head
-void addQueue(struct queue*, struct q_elem*);	// adds a queue item, pointed to by "item", to the queue pointed to by head
-void rotateQ(struct queue*);	// Moves the header pointer to the next element in the queue
-struct q_elem* delQueue(struct queue*);	// deletes an item from head and returns a pointer to the deleted item
-struct q_elem* newItem();	// returns a pointer to a new q-element
+void initQueue(struct queue*); // creates an empty queue, pointed to by the variable head
+void addQueue(struct queue*, struct q_elem*); // adds a queue item, pointed to by "item", to the queue pointed to by head
+void rotateQ(struct queue*); // Moves the header pointer to the next element in the queue
+struct q_elem* delQueue(struct queue*); // deletes an item from head and returns a pointer to the deleted item
+struct q_elem* newItem(); // returns a pointer to a new q-element
+void printQueue(struct queue*); // prints the queue's elements
 
 //-------------------//
 // Routine Functions //
