@@ -38,7 +38,7 @@ void t2() {
 //-------------//
 // main Method //
 //-------------//
-void main() {
+int main() {
 	t1();
-	return;
+	return 0;
 }
