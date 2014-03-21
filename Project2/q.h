@@ -15,7 +15,6 @@
 //----------------------------//
 // Data Structure Declaration //
 //----------------------------//
-
 typedef struct queue {
 	struct TCB_t *header; // Pointer to 1st Element in Queue
 } queue;
@@ -32,6 +31,10 @@ struct TCB_t* newItem();	// returns a pointer to a new q-element
 //-------------------//
 // Routine Functions //
 //-------------------//
+
+//------------------//
+// initQueue Method //
+//------------------//
 void initQueue(struct queue *head) {
 	// Allocate space for new Queue
 	head->header = NULL;
@@ -39,6 +42,9 @@ void initQueue(struct queue *head) {
 	return;
 }
 
+//-----------------//
+// addQueue Method //
+//-----------------//
 void addQueue(struct queue *head, struct TCB_t *item) {
 	if (head->header != NULL) {
 		// Queue is not empty, break chain and insert new item to end
@@ -56,6 +62,9 @@ void addQueue(struct queue *head, struct TCB_t *item) {
 	return;
 }
 
+//-----------------//
+// rotQueue Method //
+//-----------------//
 void rotQueue(struct queue *head) {
 	// Move head pointer to next Element
 	// Put first element at end of Queue
@@ -64,6 +73,9 @@ void rotQueue(struct queue *head) {
 	return;
 }
 
+//-----------------//
+// delQueue Method //
+//-----------------//
 struct TCB_t* delQueue(struct queue *head) {
 	// Grab the first element in the Queue
 	struct TCB_t *item = head->header;
@@ -79,6 +91,9 @@ struct TCB_t* delQueue(struct queue *head) {
 	return item;
 }
 
+//----------------//
+// newItem Method //
+//----------------//
 struct TCB_t* newItem() {
 	// Allocate memory for new Queue element
 	struct TCB_t *item = (struct TCB_t*) malloc(sizeof(struct TCB_t));
