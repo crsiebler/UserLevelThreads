@@ -6,6 +6,8 @@
 #ifndef THREADS_H
 #define THREADS_H
 
+#include "q.h"
+
 //----------------------------//
 // Method Forward Declaration //
 //----------------------------//

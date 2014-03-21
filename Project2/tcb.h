@@ -7,6 +7,7 @@
 #define TCB_H
 
 #include <ucontext.h>
+#include <stdio.h>
 
 //----------------------------//
 // Data Structure Declaration //

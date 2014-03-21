@@ -7,7 +7,6 @@
 #ifndef Q_H
 #define Q_H
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "tcb.h"
