@@ -23,23 +23,16 @@ void t1() {
 		addQueue(head, item);
 	}
 
+	// Print Queue
 	printQueue(head);
 
+	// Rotate Queue
 	rotQueue(head);
 
+	// Print Queue
 	printQueue(head);
 
-
-
 	return;
-}
-
-//-----------//
-// t2 Method //
-//-----------//
-void t2() {
-
-
 }
 
 //-------------//
