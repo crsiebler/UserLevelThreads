@@ -9,14 +9,16 @@
 //----------------------------//
 // Method Forward Declaration //
 //----------------------------//
-void start_thread(void (*function)(void));
+void startThread(void (*function)(void));
 void run();
 void yield();
 
 //---------------------//
 // start_thread Method //
 //---------------------//
-void start_thread(void (*function)(void)) {
+void startThread(void (*function)(void)) {
+	TCB_t *temp;
+	
 
 }
 
@@ -24,6 +26,8 @@ void start_thread(void (*function)(void)) {
 // run Method //
 //------------//
 void run() {
+	//start the first thread
+
 
 }
 
