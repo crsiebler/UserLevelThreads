@@ -14,7 +14,6 @@
 //-----------------------------//
 // Global Variable Declaration //
 //-----------------------------//
-struct queue *readyQ;
 struct queue *runQ;
 
 //----------------------------//
@@ -28,10 +27,10 @@ void yield();
 // start_thread Method //
 //---------------------//
 void startThread(void (*function)(void)) {
-	TCB_t *temp = (struct TCB_t*) malloc(sizeof(struct TCB_t));
-	void *stack = malloc(8192);
+	TCB_t *temp = newItem();
+	void *stack = (void *) malloc(8192);
 	init_TCB(temp, function, stack, 8192);
-	addQueue(readyQ, temp);
+	addQueue(runQ, temp);
 
 	return;
 }

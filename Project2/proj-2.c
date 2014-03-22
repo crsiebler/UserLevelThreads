@@ -8,6 +8,10 @@
 //---------------//
 #include "threads.h"
 
+//------------------//
+// Global Variables //
+//------------------//
+
 //--------------------//
 // Threaded Functions //
 //--------------------//
@@ -16,6 +20,8 @@
 // f1 Method //
 //-----------//
 void f1(void) {
+	int local = 0;
+
 	while(1) {
 		printf("THREAD 1\n");	
 		yield();
@@ -26,6 +32,8 @@ void f1(void) {
 // f2 Method //
 //-----------//
 void f2(void) {
+	int local = 0;
+
 	while(1) {
 		printf("THREAD 2\n");	
 		yield();
@@ -36,10 +44,8 @@ void f2(void) {
 // main Method //
 //-------------//
 int main() {
-	struct queue *readyQ = (struct queue*) malloc(sizeof(struct queue));
-	struct queue *runQ = (struct queue*) malloc(sizeof(struct queue));
+	runQ = (struct queue*) malloc(sizeof(struct queue));
 
-	initQueue(readyQ);
 	initQueue(runQ);
 
 	startThread(f1);
