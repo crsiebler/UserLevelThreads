@@ -38,7 +38,9 @@ void f2(void) {
 int main() {
 	struct queue *readyQ = (struct queue*) malloc(sizeof(struct queue));
 	struct queue *runQ = (struct queue*) malloc(sizeof(struct queue));
+
 	initQueue(readyQ);
+	initQueue(runQ);
 
 	startThread(f1);
 	startThread(f2);

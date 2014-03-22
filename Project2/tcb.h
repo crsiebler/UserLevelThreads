@@ -6,7 +6,7 @@
 #ifndef TCB_H
 #define TCB_H
 
-#include <sys/ucontext.h>
+#include <ucontext.h>
 #include <stdio.h>
 #include <string.h>
 
