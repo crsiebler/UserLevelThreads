@@ -141,22 +141,31 @@ struct q_elem* newItem() {
 //-------------------//
 void printQueue(struct queue *head) {
 	struct q_elem *item = head->header; // Grab first item in chain to iterate
-	struct q_elem *last = head->header->prev; // Grab last item in chain
 
-	// Loop through elements until last element found
-	while (item != NULL && (item->payload != last->payload)) {
-		printf("PAYLOAD: %d\n", item->payload); // Print the element's payload
-		item = item->next; // Iterate to next element in Queue
-		sleep(1);
+	// Check for empty Queue
+	if (head->header != NULL) {
+		// Check for only one element
+		if (head->header->next != NULL) {
+			struct q_elem *last = head->header->prev; // Grab last item in chain
+
+			// Loop through elements until last element found
+			while (item != NULL && (item->payload != last->payload)) {
+				printf("PAYLOAD: %d\n", item->payload); // Print the element's payload
+				item = item->next; // Iterate to next element in Queue
+				sleep(1);
+			}
+		}
+	
+		// Check to make sure item is not NULL (i.e. improper Queue implementation)
+		if (item != NULL) {
+			// Print the last element in the Queue
+			printf("PAYLOAD: %d\n", item->payload);
+		}
+
+		printf("\n");
+	} else {
+		printf("EMPTY QUEUE\n");
 	}
-
-	// Check to make sure item is not NULL (i.e. improper Queue implementation)
-	if (item != NULL) {
-		// Print the last element in the Queue
-		printf("PAYLOAD: %d\n", item->payload);
-	}
-
-	printf("\n");
 
 	return;
 }

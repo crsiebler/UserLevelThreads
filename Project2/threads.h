@@ -6,7 +6,16 @@
 #ifndef THREADS_H
 #define THREADS_H
 
+//---------------//
+// Include Files //
+//---------------//
 #include "q.h"
+
+//-----------------------------//
+// Global Variable Declaration //
+//-----------------------------//
+struct queue *readyQ;
+struct queue *runQ;
 
 //----------------------------//
 // Method Forward Declaration //
