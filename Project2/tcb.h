@@ -8,6 +8,7 @@
 
 #include <ucontext.h>
 #include <stdio.h>
+#include <string.h>
 
 //----------------------------//
 // Data Structure Declaration //

@@ -3,21 +3,36 @@
 // Assignment: Project 2
 // Description: 
 
+//---------------//
+// Include Files //
+//---------------//
 #include "threads.h"
 
-struct queue *readyQ;
+//--------------------//
+// Threaded Functions //
+//--------------------//
 
-void f1()
-{
-	while(1)
-	{}
-}
-void f2()
-{
-	while(1)
-	{}
+//-----------//
+// f1 Method //
+//-----------//
+void f1() {
+	while(1) {
+		
+	}
 }
 
+//-----------//
+// f2 Method //
+//-----------//
+void f2() {
+	while(1) {
+		
+	}
+}
+
+//-------------//
+// main Method //
+//-------------//
 int main() {
 	struct queue *readyQ = (struct queue*) malloc(sizeof(struct queue));
 	initQueue(readyQ);

@@ -7,6 +7,9 @@
 #ifndef Q_H
 #define Q_H
 
+//---------------//
+// Include Files //
+//---------------//
 #include <stdlib.h>
 #include <unistd.h>
 #include "tcb.h"
@@ -45,15 +48,24 @@ void initQueue(struct queue *head) {
 // addQueue Method //
 //-----------------//
 void addQueue(struct queue *head, struct TCB_t *item) {
+	// Check for 0 elements in Queue
 	if (head->header != NULL) {
-		// Queue is not empty, break chain and insert new item to end
-		item->prev = head->header->prev; // Add new link at end of chain
-		item->next = head->header; // Attach new link to beginning of chain
-		head->header->prev->next = item; // Make link from last element
-		head->header->prev = item; // Make link to end from head
+		if (head->header->next != NULL) {
+			// Queue is not empty, break chain and insert new item to end
+			item->prev = head->header->prev; // Add new link at end of chain
+			item->next = head->header; // Attach new link to beginning of chain
+			head->header->prev->next = item; // Make link from last element
+			head->header->prev = item; // Make link to end from head
+		} else {
+			// Queue has 1 element so create new chain
+			head->header->next = item; // Add new link to new item
+			head->header->prev = item; // Create chain linking to last element
+			item->next = head->header; // Create chain linking to first element
+			item->prev = head->header; // Add new link to old item
+		}
 	} else {
-		// Queue is empty, make header point to new item
-		head->header = item;
+		// Queue is empty
+		head->header = item; // Make header point to new item
 		item->prev = item; // Make pointer to itself
 		item->next = item; // Make pointer to itself
 	}
@@ -79,13 +91,22 @@ struct TCB_t* delQueue(struct queue *head) {
 	// Grab the first element in the Queue
 	struct TCB_t *item = head->header;
 
-	// Grab the last element and next element
-	// Assign next and prev to recreate chain
-	head->header->prev->next = head->header->next;
-	head->header->next->prev = head->header->prev;
+	// Check for empty Queue
+	if (header->header != NULL) {
+		// Check for single or multiple elements in Queue
+		if (head->header->next != NULL) {
+			// Grab the last element and next element
+			// Assign next and prev to recreate chain
+			head->header->prev->next = head->header->next;
+			head->header->next->prev = head->header->prev;
 
-	// Set the Queue header to next
-	head->header = head->header->next;
+			// Set the Queue header to next
+			head->header = head->header->next;
+		} else {
+			// Remove single element from Queue
+			head->header = NULL;
+		}
+	}
 	
 	return item;
 }

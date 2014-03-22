@@ -32,6 +32,12 @@ void t1() {
 	// Print Queue
 	printQueue(head);
 
+	// Delete Queue Item
+	delQueue(head);
+
+	// Print Queue
+	printQueue(head);
+
 	return;
 }
 
