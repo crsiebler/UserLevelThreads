@@ -17,7 +17,7 @@ void t1() {
 	struct queue *head = (struct queue*) malloc(sizeof(struct queue));
 	initQueue(head);
 
-	for (i = 0; i < 10; i++) {
+	for (i = 0; i < 5; i++) {
 		struct q_elem *item = newItem();
 		item->payload = i;
 		addQueue(head, item);

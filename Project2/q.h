@@ -92,7 +92,7 @@ struct TCB_t* delQueue(struct queue *head) {
 	struct TCB_t *item = head->header;
 
 	// Check for empty Queue
-	if (header->header != NULL) {
+	if (head->header != NULL) {
 		// Check for single or multiple elements in Queue
 		if (head->header->next != NULL) {
 			// Grab the last element and next element

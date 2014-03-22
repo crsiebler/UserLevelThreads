@@ -29,8 +29,8 @@ void yield();
 //---------------------//
 void startThread(void (*function)(void)) {
 	TCB_t *temp = (struct TCB_t*) malloc(sizeof(struct TCB_t));
-	stack = malloc(8192);
-	init_TCB(temp, function(), stack, 8192);
+	temp->stackP = malloc(8192);
+	init_TCB(temp, function(), temp->stackP, 8192);
 	addQueue(readyQ, temp);
 	return;
 }
@@ -39,12 +39,13 @@ void startThread(void (*function)(void)) {
 // run Method //
 //------------//
 void run() {
+
 	//start the first thread
 	ucontext_t from, to;
 	ucontext_t parent;
 	from = parent;
 	getcontext(&parent);
-	to = &(runQ->context);
+	to = (runQ->context);
 	swapcontext(&parent, &(runQ->context));
 	return;
 }
@@ -53,11 +54,19 @@ void run() {
 // yield Method //
 //--------------//
 void yield() {
+	ucontext_t from, to;	
+	from = runQ->context;
+	rotQueue(runQ);
+	to = runQ->context;
+	swapcontext(&from, &to);
+
+	// According to class notes 
+	/*
 	ucontext_t *from, *to;
 	from = &(runQ->context);
 	rotQueue(runQ);
 	to = &(runQ->context);
-	swapcontext(from, to);
+	swapcontext(from, to);*/
 	return;
 }
 
