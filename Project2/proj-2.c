@@ -17,7 +17,8 @@
 //-----------//
 void f1(void) {
 	while(1) {
-		
+		printf("THREAD 1\n");	
+		yield();
 	}
 }
 
@@ -26,7 +27,8 @@ void f1(void) {
 //-----------//
 void f2(void) {
 	while(1) {
-		
+		printf("THREAD 2\n");	
+		yield();
 	}
 }
 
@@ -35,10 +37,11 @@ void f2(void) {
 //-------------//
 int main() {
 	struct queue *readyQ = (struct queue*) malloc(sizeof(struct queue));
+	struct queue *runQ = (struct queue*) malloc(sizeof(struct queue));
 	initQueue(readyQ);
 
-	startThread(f1());
-	startThread(f2());
+	startThread(f1);
+	startThread(f2);
 	run();
 
 	return 0;
