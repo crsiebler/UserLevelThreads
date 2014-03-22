@@ -11,6 +11,7 @@
 //------------------//
 // Global Variables //
 //------------------//
+int global = 0;
 
 //--------------------//
 // Threaded Functions //
