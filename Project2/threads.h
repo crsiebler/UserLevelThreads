@@ -59,15 +59,6 @@ void yield() {
 	to = runQ->header->context;
 	swapcontext(&from, &to);
 
-	// According to class notes 
-	/*
-	ucontext_t *from, *to;
-	from = &(runQ->context);
-	rotQueue(runQ);
-	to = &(runQ->context);
-	swapcontext(from, to);
-	*/
-
 	return;
 }
 
