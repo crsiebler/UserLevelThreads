@@ -20,11 +20,13 @@ int global = 0; // Increment after each run
 //-----------//
 // f1 Method //
 //-----------//
-void f1(void) {
+static void f1(void) {
 	// Simple Couter
 	static int local = 0;
 
-	while(1) {
+	if (DEBUG) printf("THREAD 1: STARTED!!!\n");
+
+	for (;;) {
 		printf("THREAD 1:\tGLOBAL: %d\tLOCAL: %d\n", global, local);	
 		global++;
 		local++;
@@ -38,11 +40,13 @@ void f1(void) {
 //-----------//
 // f2 Method //
 //-----------//
-void f2(void) {
+static void f2(void) {
 	// Simulate Power of 2
 	static int local = 2;
 
-	while(1) {
+	if (DEBUG) printf("THREAD 2: STARTED!!!\n");
+
+	for (;;) {
 		printf("THREAD 2:\tGLOBAL: %d\tLOCAL: %d\n", global, local);	
 		global++;
 		local *= 2;
@@ -56,11 +60,13 @@ void f2(void) {
 //-----------//
 // f3 Method //
 //-----------//
-void f3(void) {
+static void f3(void) {
 	// Multiples of 3
 	static int local = 3;
 
-	while(1) {
+	if (DEBUG) printf("THREAD 3: STARTED!!!\n");
+
+	for (;;) {
 		printf("THREAD 3:\tGLOBAL: %d\tLOCAL: %d\n", global, local);
 		global++;
 		local += 3;
