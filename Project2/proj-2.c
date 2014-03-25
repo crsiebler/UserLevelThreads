@@ -11,7 +11,7 @@
 //------------------//
 // Global Variables //
 //------------------//
-int global = 0;
+int global = 0; // Increment after each run
 
 //--------------------//
 // Threaded Functions //
@@ -21,7 +21,8 @@ int global = 0;
 // f1 Method //
 //-----------//
 void f1(void) {
-	int local = 0;
+	// Simple Couter
+	static int local = 0;
 
 	while(1) {
 		printf("THREAD 1:\tGLOBAL: %d\tLOCAL: %d\n", global, local);	
@@ -38,12 +39,13 @@ void f1(void) {
 // f2 Method //
 //-----------//
 void f2(void) {
-	int local = 0;
+	// Simulate Power of 2
+	static int local = 2;
 
 	while(1) {
 		printf("THREAD 2:\tGLOBAL: %d\tLOCAL: %d\n", global, local);	
 		global++;
-		local++;
+		local *= 2;
 		sleep(1);
 		yield();
 	}
@@ -55,12 +57,13 @@ void f2(void) {
 // f3 Method //
 //-----------//
 void f3(void) {
-	int local = 0;
-	
+	// Multiples of 3
+	static int local = 3;
+
 	while(1) {
-		printf("THREAD 3:\tGLOBAL: %d\tLOCAL: %d\n", global, local);
+		printf("THREAD 3:\tGLOBAL: %d\tLOCAL: %d\n\n", global, local);
 		global++;
-		local++;
+		local += 3;
 		sleep(1);
 		yield();
 	}
