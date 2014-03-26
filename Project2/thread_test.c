@@ -20,9 +20,9 @@ int global = 0; // Increment after each run
 //-----------//
 // f1 Method //
 //-----------//
-static void f1(void) {
+void f1(void) {
 	// Simple Couter
-	static int local = 0;
+	int local = 0;
 
 	if (DEBUG) printf("THREAD 1: STARTED!!!\n");
 
@@ -40,9 +40,9 @@ static void f1(void) {
 //-----------//
 // f2 Method //
 //-----------//
-static void f2(void) {
+void f2(void) {
 	// Simulate Power of 2
-	static int local = 2;
+	int local = 2;
 
 	if (DEBUG) printf("THREAD 2: STARTED!!!\n");
 
@@ -60,9 +60,9 @@ static void f2(void) {
 //-----------//
 // f3 Method //
 //-----------//
-static void f3(void) {
+void f3(void) {
 	// Multiples of 3
-	static int local = 3;
+	int local = 3;
 
 	if (DEBUG) printf("THREAD 3: STARTED!!!\n");
 
